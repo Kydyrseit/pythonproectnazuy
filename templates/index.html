@@ -4,31 +4,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/static/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
-<!--<li>-->
-<!--    <span class="icon"><i class="fas fa-check-circle"></i></span>-->
-<!--    <span class="task-name">Назар лох</span>-->
-<!--    <span class="delete"><i class="fas fa-trash-alt"></i></span>-->
-<!--</li>-->
-
-
-    <title>Управление заказами</title>
+    <title>Система управления заказами</title>
 </head>
 <body>
-    <h1>Система управления заказами</h1>
-    <div>
-        <h2>Добавить заказ</h2>
-        <form id="order-form">
-            <input type="text" id="order-name" placeholder="Название заказа" required>
-            <button type="submit">Добавить</button>
-        </form>
+    <div class="container">
+        <h1>Система управления заказами</h1>
+
+        <!-- Экран регистрации -->
+        <div id="registration-section" style="display: none;">
+            <h2>Регистрация</h2>
+            <form id="registration-form">
+                <input type="text" id="username" placeholder="Имя пользователя" required><br><br>
+                <input type="password" id="password" placeholder="Пароль" required><br><br>
+                <button type="submit">Зарегистрироваться</button>
+                <p id="error-message" style="color: red; display: none;">Пожалуйста, заполните все поля!</p>
+            </form>
+        </div>
+
+        <!-- Экран добавления заказов -->
+        <div id="order-section" style="display: none;">
+            <h2>Добавить заказ</h2>
+            <form id="order-form">
+                <input type="text" id="order-name" placeholder="Название заказа" required>
+                <button type="submit"style="color: red">Добавить</button>
+            </form>
+            <div id="orders-section">
+                <h3>Список заказов</h3>
+                <ul id="order-list"></ul>
+                <button id="clear-orders"style="color: red">Очистить список</button>
+            </div>
+        </div>
     </div>
-    <div>
-        <h2>Список заказов</h2>
-        <ul id="order-list"></ul>
-    </div>
+
     <script src="/static/main.js"></script>
 </body>
 </html>

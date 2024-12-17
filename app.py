@@ -19,6 +19,15 @@ with app.app_context():
 def index():
     return render_template('index.html')
 
+@app.route('/')
+def main():
+    return render_template('main.html')
+
+@app.route('/')
+def register():
+    return render_template('register.html')
+
+
 @app.route('/orders', methods=['GET', 'POST'])
 def manage_orders():
     if request.method == 'POST':
@@ -32,6 +41,18 @@ def manage_orders():
     else:
         orders = Order.query.all()
         return jsonify([{'id': order.id, 'name': order.name} for order in orders])
+
+@app.route('/orders/clear', methods=['DELETE'])
+def clear_orders():
+    try:
+        db.session.query(Order).delete()  # Удаляем все записи из таблицы Order
+        db.session.commit()
+        return jsonify({'message': 'Список заказов очищен'}), 200
+    except Exception as e:
+        db.session.rollback()
+        print(e)  # Логируем ошибку для отладки
+        return jsonify({'error': 'Ошибка при очистке заказов'}), 500
+
 
 if __name__ == '__main__':
     app.run(debug=True)
